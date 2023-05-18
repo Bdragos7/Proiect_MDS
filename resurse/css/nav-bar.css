@@ -1,0 +1,37 @@
+
+#sidebarMenu {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    margin: 0px;
+    background: linear-gradient(90deg, #715444 0%, #36241f 100%);
+    /* background: #715444; */
+    --inaltime-meniu:50px;
+    --latime-buton:150px;
+
+
+}
+
+.sidebarMenuInner{
+    
+    
+    /* padding:50px; */
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    list-style-type: none;
+    text-align: center;
+    padding-top: 20px;
+
+}
+
+.sidebarMenuInner a{
+    color: aliceblue;
+    
+}
+
+#sidebarMenu ul li {
+    height: var(--inaltime-meniu);
+    width: var(--latime-buton);
+    padding: 0;
+
+}

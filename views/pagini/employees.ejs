@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+
+    <%-include("../fragmente/head.ejs")%>
+</head>
+
+<body>
+
+    <header>
+
+        <%-include("../fragmente/header.ejs")%>
+    </header>
+
+
+    <section id="produse">
+        <h2>Angajati</h2>
+        <div class="grid-produse">
+            <% for( let prod of locals.produse) { %>
+                <article class="produs" >
+                    <h3 class="nume">Nume: <a href="/employee/<%-prod.epmid %>" ><span class="val-nume"><%- prod.firstname%></span></a></h3>
+                    <div class="info-prod">
+               
+                    </div>
+            <% }%>
+        </div>
+    </section>
+
+</body>
+
+<footer>
+
+    <%-include("../fragmente/footer.ejs")%>
+</footer>
