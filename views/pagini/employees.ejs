@@ -5,26 +5,51 @@
 </head>
 
 <body>
-
     <header>
 
         <%-include("../fragmente/header.ejs")%>
     </header>
 
+    <main>
+        <section id="produse">
+                <% for( let dep of locals.department) {%>
+                    <br>
+                    <p class="titlu-dep"><%- dep.departmentname%></p>
+                    <br>
+                <section class="grid-produse">
+                <% for( let emp of locals.employees) { %>
+                    <% if (emp.departmentid == dep.departmentid) { %>
+                            <article class="produs" >
+                                <h3 class="nume"><span class="val-nume"><%- emp.firstname%> </span><spanc class="val-prenume"><%- emp.lastname%></span></h3>
+                                
+                                <div class="info-prod">
+                                    <p class="JobTitle">Job Title: <span class="val-jobtitle"><%- emp.jobtitle%></span></p>
+                                </div>   
+                                
+                                <div class="info-prod">
+                                    <p class="Age">Age: <span class="val-age"><%- emp.age%></span></p>
+                                </div>
 
-    <section id="produse">
-        <h2>Angajati</h2>
-        <div class="grid-produse">
-            <% for( let prod of locals.produse) { %>
-                <article class="produs" >
-                    <h3 class="nume">Nume: <a href="/employee/<%-prod.epmid %>" ><span class="val-nume"><%- prod.firstname%></span></a></h3>
-                    <div class="info-prod">
-               
-                    </div>
-            <% }%>
-        </div>
-    </section>
+                                <div class="info-prod">
+                                    <p class="HireDate">Hire Date: <span class="val-hiredate"><%- emp.hiredate.toISOString().substring(0, 10)%></span></p>
+                                </div>
 
+                                <div class="info-prod">
+                                    <p class="Salary">Salary: <span class="val-salary"><%- emp.salary%> RON</span></p>
+                                </div>
+                                
+
+                               
+
+
+                            </article>
+                   
+                        <% }%>   
+                    <% }%>
+                </section>
+                <% } %>
+        </section>
+    </main>
 </body>
 
 <footer>

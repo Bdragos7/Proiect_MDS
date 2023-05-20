@@ -1,11 +1,11 @@
 body {
-    background-image: url('/imagini/wallpaperflare.com_wallpaper.jpg');
+    background-image: url('/resurse/imagini/wallpaperflare.com_wallpaper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif;
-
+    background-attachment: fixed;
 
 }
 

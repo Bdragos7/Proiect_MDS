@@ -3,6 +3,7 @@
     height: 100%;
     position: fixed;
     left: 0;
+    top: 0;
     width: 250px;
     margin: 0px;
     background: linear-gradient(90deg, #715444 0%, #36241f 100%);
