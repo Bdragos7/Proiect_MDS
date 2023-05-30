@@ -1,0 +1,20 @@
+// Draw the fence posts
+    glColor3f(0.5f, 0.35f, 0.05f);
+    glPushMatrix();
+    glTranslatef(-0.8f, -0.8f, 0.0f);
+    for (int i = 0; i < 9; i++)
+    {
+        glTranslatef(0.2f, 0.0f, 0.0f);
+        glutSolidCube(0.2f);
+    }
+    glPopMatrix();
+
+    // Draw the fence rails
+    glColor3f(0.7f, 0.5f, 0.1f);
+    glPushMatrix();
+    glTranslatef(0.0f, -0.5f, 0.0f);
+    glScalef(1.8f, 0.2f, 0.2f);
+    glutSolidCube(1.0f);
+    glPopMatrix();
+
+    glFlush();

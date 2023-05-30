@@ -2,21 +2,265 @@
 <head>
 
     <%-include("../fragmente/head.ejs")%>
+
 </head>
 
 <body>
 
     <header>
-
-        <%-include("../fragmente/header.ejs")%>
+        <%-include("../fragmente/header.ejs")%>           
+       
     </header>
-
+  
     <main>
+        
+        <table id="tabel">
+            <thead>
+            <tr>
+                <td colspan="7" class="header">Avarage salary of each department</td>
+              </tr>
+            </thead>
+              
+            <tr class="table-headers">
+                <th>ID</th>
+                <th>Department</th>
+                <th>Avg Salary</th>
+            </tr>
+           
+            
+            <div class="grid-linii">
+            <% var i =0
+            for(let dep of locals.department) { %>
+                
+                <tr class="row">
+                    <td><span class="val-nume"><%- dep.departmentid%></td>
+                    <td><span class="val-nume"><%- dep.departmentname%> </td>
+                    <td>
+                     
+
+                        <span class="val-salary"><%- Object.values(employees[i])%></span>
+                        <% i = i+1 %>
+                            
+                    </td>
+
+                </tr>
+
+                
+            <%}%>
+        </div>
+
+        </table>
+        
+        <table id="tabel">
+            <thead>
+            <tr>
+                <td colspan="7" class="header">Avarage age of each department</td>
+              </tr>
+            </thead>
+              
+            <tr class="table-headers">
+                <th>ID</th>
+                <th>Department</th>
+                <th>Avg Age</th>
+            </tr>
+           
+            
+            <div class="grid-linii">
+            <% var i =0
+            for(let dep of locals.department) { %>
+                
+                <tr class="row">
+                    <td><span class="val-dpeid"><%- dep.departmentid%></td>
+                    <td><span class="val-numedep"><%- dep.departmentname%> </td>
+                    <td>
+                     
+
+                        <span class="val-age"><%- Object.values(ages[i])%></span>
+                        <% i = i+1 %>
+                            
+                    </td>
+
+                </tr>
+
+                
+            <%}%>
+        </div>
+
+        </table>
+
+        <table id="tabel">
+            <thead>
+            <tr>
+                <td colspan="7" class="header">Product sold in every month</td>
+              </tr>
+            </thead>
+              
+            <tr class="table-headers">
+                <th>Month/ID&Price</th>
+                <% for(let prod of locals.produse) {%>
+                
+                    <th><span class="val-prodid">  <%- prod.productid%>/<%- prod.price%>  </span></th>
+                    
+                <% } %>
+                <th>Value of items sold</th>
+            </tr>
+           
+            
+            <div class="grid-linii">
+            <% 
+            var i = 0
+            
+            for(let mon of locals.salesMon) { var value =0%>
+                
+                <tr class="row">
+                    <td><span class="val-month"><%- mon.sal%></td>
+                    <% 
+                    
+                    for(let prod of locals.produse) {
+                        var sum = 0
+                        
+                    %>    
+
+                        <% for(let sa of locals.sales) {
+                            //console.log(sa.salesdate.getMonth());
+                            if((prod.productid == sa.productid)&&(mon.sal == sa.salesdate.getMonth()+1))
+                            {sum = sum + sa.quantity;
+                                value = value + sa.quantity*prod.price;
+                            %>
+                            <%}%>
+        
+                        <%}%>
+                        
+                        <td><span class ="val-quantity"><%- sum%></span></td>
+
+                    <% } %>
+
+                    <td><span class ="val-value"><%- value%></span></td>
+                </tr>
+
+                
+            <%}%>
+        </div>
+
+        </table>
+
+        <table id="tabel">
+            <thead>
+            <tr>
+                <td colspan="7" class="header">Raport of Jobs in the company</td>
+              </tr>
+            </thead>
+              
+            <tr class="table-headers">
+               
+                <% for(let job of locals.jobtitle) {%>
+                    <th><span class="val-jobtitle"><%- job.jobtitle%></span></th>
+                <%}%>
+            </tr>
+           
+            
+            <div class="grid-linii">
+            <tr class="row">
+            <%
+             var nrpoz = 0;
+            for(let job of locals.jobtitle) { %>
+                    <% var i = 0;%>
+                    
+                    <%for(let emp of locals.emp2) {
+                        
+                        if( emp.jobtitle == job.jobtitle)
+                            {i = i+1;%>
+                        
+                                <%}%>
+                        <% } %>
+                        <% nrpoz = nrpoz + i; %>        
+                        <td><span class ="val-numjob"><%- i%></span></td>     
+                    
+        
+                
+            <%}%>
 
 
+            </tr>
+
+            <tr class="row">
+                <% for (let job of locals.jobtitle) {%>
+                    <% var i = 0;%>
+                    <%for(let emp of locals.emp2) {
+                        
+                        if( emp.jobtitle == job.jobtitle)
+                            {i = i+1;%>
+                        
+                                <%}%>
+                        <% } %>
+              
+                        <td><span class ="val-numjob"><%- (i/nrpoz)*100%>%</span></td>     
+                <%}%>
+            </tr>
+        </div>
+
+        </table>
+
+    </table>
+        
+        <table id="tabel">
+            <thead>
+            <tr>
+                <td colspan="7" class="header">Days left of vacation for each employee</td>
+              </tr>
+            </thead>
+              
+            <tr class="table-headers">
+                <th>ID</th>
+                <th>Name </th>
+                <th>Days he took vacation</th>
+                <th>Days left of vacation</th>
+            </tr>
+           
+            
+            <div class="grid-linii">
+            <% 
+            for(let emp of locals.emp2) {
+                 %>
+                
+                <tr class="row">
+                    <td><span class ="val-empid"><%- emp.empid%></span></td>
+                    <td><span class="val-empnume"><%- emp.firstname%> <%- emp.lastname%></span></td>
+                    <% 
+                    var i =0
+                    for(let day of locals.vacDays) {
+                        
+                        if(emp.empid == day.empid){
+                            i = i + day.numdays;
+                        }
+                        
+
+                        %>
+                        
+                    <%}%>
+                    <% if( i< 7){ %>
+                    <td><span class="val-vacnumdays"><%- i%></span></td>
+                        <% } else {%>
+                            <td><span class="val-vacnumdays"><%- i-Math.ceil(i/7)+1%></span></td>
+                            <%}%>
+
+                        
+                    <% if( i< 7){ %>
+                    <td><span class="val-vacnumdays"><%- 21 -i%></span></td>
+                        <% } else {%>
+                            <td><span class="val-vacnumdays"><%- 21 - (i-Math.ceil(i/7)+1)%></span></td>
+                            <%}%>
+                </tr>
+
+                
+            <%}%>
+        </div>
+
+        </table>
 
         
     </main>
+    
 </body>
 
 <footer>

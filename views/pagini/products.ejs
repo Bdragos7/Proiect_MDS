@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+
+    <%-include("../fragmente/head.ejs")%>
+</head>
+
+<body>
+
+    <header>
+
+        <%-include("../fragmente/header.ejs")%>
+    </header>
+
+    <main>
+        <section id="produse">
+                
+                <section class="grid-produse">
+                <% for( let prod of locals.products) { %>
+                        <article class="produs" >
+                            <h3 class="nume"><span class="val-nume"><%- prod.productname%></h3>
+                                
+                            <div class="info-prod">
+                                <p class="Price">Price: <span class="val-price"><%- prod.price%></span></p>
+                            </div>   
+                                
+                            <div class="info-prod">
+                                <p class="Weight">Weight: <span class="val-weight"><%- prod.weight%></span></p>
+                            </div>
+
+                            <div class="info-prod">
+                                <p class="Calories">Calories: <span class="val-calories"><%- prod.calories%></span></p>
+                            </div>
+
+                            <div class="info-prod">
+                                <p class="Description">Description: <span class="val-description"><%- prod.description%></span></p>
+                            </div>
+
+                            </article>
+                   
+                        <% }%>   
+                </section>
+        </section>
+    </main>
+</body>
+
+<footer>
+
+    <%-include("../fragmente/footer.ejs")%>
+</footer>

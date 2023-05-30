@@ -1,0 +1,5 @@
+--to do list
+
+*pagina produse ca la angajati
+*statistica pt angajati 
+*statistica pt 'comenzi'

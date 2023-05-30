@@ -52,6 +52,95 @@ app.get(["/","/index","/home","/login"], function(req, res){
 
 // })
 
+app.get("/products", function(req, res){
+    
+    client.query("select * from products", function(err,rez){
+        //console.log(rez.rows)
+        if(err){
+            console.log(err)
+            renderError(res,2);
+        }
+        else
+            res.render("pagini/products", {products:rez.rows});
+    });
+
+    
+
+});
+
+app.get("/reports", function(req, res){
+    console.log("ceva");
+    client.query("select round(avg(salary),2) from employees  group by departmentid order by departmentid asc", function(err,rez){
+       //console.log(rez.rows)
+        if(err){
+            console.log(err)
+            renderError(res,2);
+        }
+        client.query("select round(avg(age),0) from employees  group by departmentid order by departmentid asc", function(err,rezAge){
+            //console.log(rezAge.rows)
+             if(err){
+                 console.log(err)
+                 renderError(res,2);
+             }
+             client.query("select distinct extract( month from salesdate) as sal from sales order by sal asc ", function(err,rezMon){
+                //console.log(rezMon.rows)
+                 if(err){
+                     console.log(err)
+                     renderError(res,2);
+                 }
+                 client.query("select * from products ", function(err,rezProd){
+                   // console.log(rezProd.rows)
+                     if(err){
+                         console.log(err)
+                         renderError(res,2);
+                     }
+                    client.query("select * from departments", function(err,rezDep){
+                        //console.log(rezDep.rows)
+                        if(err){
+                            console.log(err)
+                            renderError(res,2);
+                        }
+                        client.query("select * from sales ", function(err,rezSales){
+                            //console.log(rezSales.rows)
+                              if(err){
+                                  console.log(err)
+                                  renderError(res,2);
+                              }
+
+                              client.query("select distinct(jobtitle) from employees ", function(err,rezJob){
+                                //console.log(rezJob.rows)
+                                  if(err){
+                                      console.log(err)
+                                      renderError(res,2);
+                                  }
+                                  client.query("select * from employees order by empid asc ", function(err,rezEmp){
+                                    //console.log(rezEmp.rows)
+                                      if(err){
+                                          console.log(err)
+                                          renderError(res,2);
+                                      }
+                                      client.query("SELECT empid, (endvacation - startvacation) AS numDays FROM vacations order by empid asc; ", function(err,rezDays){
+                                        console.log(rezDays.rows)
+                                          if(err){
+                                              console.log(err)
+                                              renderError(res,2);
+                                          }
+                                            else
+                                                res.render("pagini/reports", {employees:rez.rows,ages:rezAge.rows, salesMon:rezMon.rows,
+                                                    produse:rezProd.rows, vacDays:rezDays.rows, jobtitle:rezJob.rows, emp2:rezEmp.rows, sales:rezSales.rows, department:rezDep.rows});
+});
+});
+});
+});
+});
+});
+});
+});
+});
+});
+
+
+
 app.get("/employees", function(req, res){
     console.log("ceva");
     client.query("select * from employees", function(err,rez){
@@ -71,30 +160,34 @@ app.get("/employees", function(req, res){
             else
                 res.render("pagini/employees", {employees:rez.rows, department:rezDep.rows});
     });
+
+    
     
     });
 
-})
+    
 
-app.get("/*", function(req, res){
-    console.log("url:",req.url);
-    res.render("pagini"+req.url, function(err, rezRandare){
+});
+
+// app.get("/*", function(req, res){
+//     console.log("url:",req.url);
+//     res.render("pagini"+req.url, function(err, rezRandare){
         
-        if(err){
-            if(err.message.includes("Failed to lookup view")){
-                console.log("nu mere bre!");
+//         if(err){
+//             if(err.message.includes("Failed to lookup view")){
+//                 console.log("nu mere bre!");
                 
-            }
+//             }
             
-            else{
+//             else{
                 
-            }
-        }
-        else{
-            res.send(rezRandare);
-        }
-    });
-})
+//             }
+//         }
+//         else{
+//             res.send(rezRandare);
+//         }
+//     });
+// })
 
 
 

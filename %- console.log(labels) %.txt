@@ -1,0 +1,39 @@
+<%    
+            const labels = [];
+            const values = [];
+            for (const sal of locals.values) { 
+                values.push(sal.salary);
+            }
+            for (const nume of locals.labels){
+                labels.push(nume.lastname);
+            }
+
+            
+            console.log(labels);
+            console.log(values);
+
+         %>
+
+
+
+
+
+
+<script> 
+            // const labels =[ 'Brendon', 'Brown', 'Chadson', 'White', 'Freeman' ];
+            // const values = [ '5100.00', '3200.00', '4200.00', '8200.00', '6500.00' ];
+            const ctx = document.getElementById('myChartCanvas').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                    label: 'Data from Vector',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    }],
+                },
+            });
+ </script>
