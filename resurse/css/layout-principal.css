@@ -14,3 +14,14 @@ a{
   
 }
 
+#titlu {
+    margin-top: 300px;
+    margin-left:500px;
+    font-size: 50px;
+    font-weight: 900;
+    text-align: left;
+    color: aliceblue;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    
+}
+

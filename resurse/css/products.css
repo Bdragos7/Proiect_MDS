@@ -87,11 +87,14 @@ main{
 .grid-produse .produs .descriere{
     display:flex;
     background-color: var(--culoare-atribute);
-}
-.grid-produse .produs .descriere{
     width:auto;
+    
     text-align:center;
     font-weight:bold;
+}
+
+#desc{
+    height: 70px;
 }
 
 

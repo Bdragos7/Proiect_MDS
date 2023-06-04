@@ -120,7 +120,7 @@ app.get("/reports", function(req, res){
                                           renderError(res,2);
                                       }
                                       client.query("SELECT empid, (endvacation - startvacation) AS numDays FROM vacations order by empid asc; ", function(err,rezDays){
-                                        console.log(rezDays.rows)
+                                        //  console.log(rezDays.rows)
                                           if(err){
                                               console.log(err)
                                               renderError(res,2);
